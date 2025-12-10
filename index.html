@@ -1,0 +1,2599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazeem Mohammed - DevOps Engineer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-dark: #1a252f;
+            --bg-light: #34495e;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: var(--bg-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 37, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 37, 47, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Blog & Articles Styles */
+        #blog {
+            background: var(--bg-light);
+        }
+
+        .blog-grid {
+            margin-top: 3rem;
+        }
+
+        .blog-platform {
+            margin-bottom: 4rem;
+        }
+
+        .blog-platform h3 {
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-card {
+            background: var(--primary-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .article-header h4 {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            flex: 1;
+        }
+
+        .article-date {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+
+        .article-excerpt {
+            color: rgba(236, 240, 241, 0.8);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .article-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: rgba(236, 240, 241, 0.7);
+        }
+
+        .article-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .article-link:hover {
+            color: var(--text-light);
+        }
+
+        .blog-cta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        /* Open Source Styles */
+        .opensource-category {
+            margin-bottom: 4rem;
+        }
+
+        .opensource-category h3 {
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .packages-grid, .artifacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .package-card, .artifact-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        .package-card:hover, .artifact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+        }
+
+        .package-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .package-header h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+        }
+
+        .package-badges, .video-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge, .video-tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-terraform { background: #623CE4; color: white; }
+        .badge-aws { background: #FF9900; color: white; }
+        .badge-k8s { background: #326CE5; color: white; }
+
+        .package-description, .artifact-description {
+            color: rgba(236, 240, 241, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .package-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .package-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .package-link, .artifact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .package-link:hover, .artifact-link:hover {
+            background: #2980b9;
+        }
+
+        .artifact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .artifact-header h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+        }
+
+        .artifact-type {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .artifact-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Video Content Styles */
+        #videos {
+            background: var(--bg-light);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .video-card {
+            background: var(--primary-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 280px;
+            position: relative;
+        }
+
+        .video-thumbnail iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-content {
+            padding: 2rem;
+        }
+
+        .video-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-description {
+            color: rgba(236, 240, 241, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .video-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: rgba(236, 240, 241, 0.7);
+            flex-wrap: wrap;
+        }
+
+        .video-tag {
+            background: var(--secondary-color);
+            color: white;
+            margin-top: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .video-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Certifications Styles */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            transition: transform 0.3s ease;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cert-logo {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .cert-content {
+            flex: 1;
+        }
+
+        .cert-content h4 {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-issuer {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-date, .cert-id {
+            color: rgba(236, 240, 241, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cert-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .cert-skill {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .verify-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .verify-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Case Studies */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .case-study-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .case-study-header {
+            background: var(--gradient);
+            padding: 2rem;
+            color: white;
+        }
+
+        .case-study-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study-body {
+            padding: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .metrics {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--bg-light);
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .close {
+            color: var(--text-light);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+        }
+
+        .close:hover {
+            color: var(--accent-color);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            width: 30px;
+        }
+
+        .contact-form {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: var(--primary-color);
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .case-studies-grid, .articles-grid, .packages-grid, .videos-grid, .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .package-header, .article-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .article-date {
+                margin-left: 0;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">DevOps Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#research">Research Publications</a></li>
+                <li><a href="#publish">Published Articles</a></li>
+                <li><a href="#opensource">OpenSource</a></li>
+                <li><a href="#author">Author(Books)</a></li>
+                <li><a href="#mentor">Mentor</a></li>
+		<li><a href="#webinar">Webinar</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+               <!-- <li><a href="#projects">Projects</a></li> -->
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Kazeem Mohammed</h1>
+            <p class="subtitle">Cloud Security | DevSecOps | Cybersecurity | MLOps | Site Reliability Engineering</p>
+            <p class="description">
+Building secure, self-healing cloud infrastructure at enterprise scale. I architect resilient platforms with automated security controls, zero-trust implementation, and enterprise observability—enabling organizations to innovate rapidly while maintaining compliance, security, and 99.9%+ reliability.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-folder-open"></i>
+                    View Projects
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/kazeemayeed"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/kazeem-mohammed-51207b136/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://registry.terraform.io/namespaces/kazeemayeed" target="_blank" rel="noopener noreferrer"><img src="https://cdn.simpleicons.org/terraform" alt="Terraform" width="24" height="24" style="vertical-align:middle;"</a>
+            <a href="https://www.youtube.com/channel/UCQ11YJvyf7OSmuZMQ5iDbVA" target="_blank" rel="noopener noreferrer" title="YouTube">
+            <i class="fab fa-youtube"></i></a>
+            <a href="https://hub.docker.com/u/kazimmayeed"><i class="fab fa-docker"></i></a>
+            <a href="https://artifacthub.io/packages/search?user=kazeemayeed" target="_blank" rel="noopener noreferrer" title="Artifact Hub"><img src="https://cdn.simpleicons.org/artifacthub" alt="Artifact Hub" width="24" height="24" style="vertical-align: middle;"></a>
+            <a href="https://medium.com/@kazeemmayeed" target="_blank" rel="noopener noreferrer" title="Medium"><i class="fab fa-medium"></i></a>
+            <a href="https://dev.to/kazeem_mohammed" target="_blank" rel="noopener noreferrer" title="DEV Community"><i class="fab fa-dev"></i></a>
+            <a href="https://dzone.com/users/5399704/kazeemmayeed.html" target="_blank" rel="noopener noreferrer" title="DZone"><i class="fas fa-newspaper"></i></a>
+        </div>
+        <p>&copy; 2025 Kazeem Mohammed. All rights reserved.</p>
+    </footer>
+
+    <!-- Modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>CI/CD Pipeline Automation</h2>
+            <h3>Problem Statement</h3>
+            <p>A growing e-commerce company was struggling with manual deployment processes that took 4 hours and were prone to human error. They needed an automated solution to improve deployment speed and reliability.</p>
+            
+            <h3>Solution Architecture</h3>
+            <ul>
+                <li><strong>Source Control:</strong> GitHub with feature branch workflow</li>
+                <li><strong>CI/CD Platform:</strong> Jenkins with Blue Ocean interface</li>
+                <li><strong>Testing:</strong> Automated unit, integration, and security tests</li>
+                <li><strong>Deployment:</strong> Blue-green deployment strategy</li>
+                <li><strong>Monitoring:</strong> Real-time deployment monitoring with Grafana</li>
+            </ul>
+
+            <h3>Implementation Highlights</h3>
+            <p><strong>Multi-stage Pipeline:</strong> Created a comprehensive pipeline with stages for code quality checks, security scanning, building Docker images, and automated deployments.</p>
+            <p><strong>Automated Testing:</strong> Integrated SonarQube for code quality analysis and implemented automated testing at multiple levels.</p>
+            <p><strong>Zero-Downtime Deployments:</strong> Implemented blue-green deployment strategy ensuring continuous service availability.</p>
+
+            <h3>Results Achieved</h3>
+            <ul>
+                <li>Deployment time reduced from 4 hours to 25 minutes (93.8% improvement)</li>
+                <li>Zero failed deployments in production (100% success rate)</li>
+                <li>Automated rollback capability implemented</li>
+                <li>Code coverage increased to 85%</li>
+                <li>Developer productivity increased by 40%</li>
+            </ul>
+
+            <h3>Technologies Used</h3>
+            <p>Jenkins, Docker, Kubernetes, AWS ECS, SonarQube, GitHub, Terraform, Grafana</p>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h2>Infrastructure as Code Implementation</h2>
+            <h3>Problem Statement</h3>
+            <p>A fast-growing startup needed scalable, secure, and cost-effective infrastructure for their web application serving 100K+ daily users. Manual infrastructure management was becoming unsustainable.</p>
+            
+            <h3>Solution Architecture</h3>
+            <ul>
+                <li><strong>IaC Tool:</strong> Terraform for infrastructure provisioning</li>
+                <li><strong>Cloud Provider:</strong> AWS with multi-AZ deployment</li>
+                <li><strong>Architecture:</strong> Auto-scaling, load-balanced, highly available</li>
+                <li><strong>Security:</strong> VPC, Security Groups, IAM roles and policies</li>
+                <li><strong>Monitoring:</strong> CloudWatch with custom metrics and SNS alerts</li>
+            </ul>
+
+            <h3>Key Components</h3>
+            <p><strong>VPC Design:</strong> Multi-AZ VPC with public and private subnets, NAT gateways, and internet gateways.</p>
+            <p><strong>Auto Scaling:</strong> Application Load Balancer with auto-scaling groups responding to CPU and memory metrics.</p>
+            <p><strong>Security:</strong> Least privilege IAM policies, security groups with minimal required access.</p>
+
+            <h3>Results Achieved</h3>
+            <ul>
+                <li>Infrastructure provisioning time: 15 minutes (vs 2-3 hours manual)</li>
+                <li>99.9% uptime achieved with auto-scaling</li>
+                <li>40% cost reduction through right-sizing and auto-scaling</li>
+                <li>Zero configuration drift with state management</li>
+                <li>Consistent environments across dev, staging, and production</li>
+            </ul>
+
+            <h3>Technologies Used</h3>
+            <p>Terraform, AWS (EC2, ALB, ASG, RDS, CloudWatch), GitHub, Jenkins</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h2>Microservices Migration with Kubernetes</h2>
+            <h3>Problem Statement</h3>
+            <p>A legacy monolithic application was becoming difficult to scale and maintain. The company needed to migrate to a microservices architecture for better scalability and development velocity.</p>
+            
+            <h3>Solution Architecture</h3>
+            <ul>
+                <li><strong>Containerization:</strong> Docker containers for each microservice</li>
+                <li><strong>Orchestration:</strong> Kubernetes with custom operators</li>
+                <li><strong>Service Mesh:</strong> Istio for service-to-service communication</li>
+                <li><strong>Storage:</strong> Persistent volumes with dynamic provisioning</li>
+                <li><strong>Networking:</strong> Ingress controllers with SSL termination</li>
+            </ul>
+
+            <h3>Migration Strategy</h3>
+            <p><strong>Phased Approach:</strong> Gradual extraction of services using the Strangler Fig pattern.</p>
+            <p><strong>Database Decomposition:</strong> Split monolithic database into service-specific databases.</p>
+            <p><strong>API Gateway:</strong> Implemented Kong API gateway for request routing and rate limiting.</p>
+
+            <h3>Results Achieved</h3>
+            <ul>
+                <li>60% improvement in resource utilization</li>
+                <li>Deployment rollouts reduced to 5 seconds</li>
+                <li>99.99% service availability achieved</li>
+                <li>Horizontal auto-scaling implemented</li>
+                <li>Development team velocity increased by 50%</li>
+            </ul>
+
+            <h3>Technologies Used</h3>
+            <p>Docker, Kubernetes, Istio, Helm, Kong, PostgreSQL, Redis, Prometheus</p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <h2>Comprehensive Observability Stack</h2>
+            <h3>Problem Statement</h3>
+            <p>A distributed system lacked proper monitoring and observability, leading to slow incident response and difficulty in troubleshooting issues across microservices.</p>
+            
+            <h3>Solution Architecture</h3>
+            <ul>
+                <li><strong>Metrics:</strong> Prometheus with custom exporters and Grafana dashboards</li>
+                <li><strong>Logging:</strong> ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+                <li><strong>Tracing:</strong> Jaeger for distributed tracing</li>
+                <li><strong>Alerting:</strong> AlertManager with PagerDuty integration</li>
+                <li><strong>APM:</strong> Application Performance Monitoring with custom metrics</li>
+            </ul>
+
+            <h3>Implementation Highlights</h3>
+            <p><strong>Golden Signals:</strong> Implemented monitoring for latency, traffic, errors, and saturation.</p>
+            <p><strong>Custom Dashboards:</strong> Created role-specific dashboards for developers, operations, and business stakeholders.</p>
+            <p><strong>Intelligent Alerting:</strong> Reduced alert noise through smart grouping and escalation policies.</p>
+
+            <h3>Results Achieved</h3>
+            <ul>
+                <li>Mean Time to Detection (MTTD): 30 seconds</li>
+                <li>Mean Time to Recovery (MTTR): 5 minutes</li>
+                <li>95% reduction in false positive alerts</li>
+                <li>Comprehensive service dependency mapping</li>
+                <li>Proactive issue identification and resolution</li>
+            </ul>
+
+            <h3>Technologies Used</h3>
+            <p>Prometheus, Grafana, ELK Stack, Jaeger, AlertManager, PagerDuty, Fluentd</p>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Update scroll progress bar
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            alert('Thank you for your message! I will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.skill-category, .case-study-card, .contact-item, .article-card, .package-card, .cert-card, .video-card');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Typing effect for hero subtitle
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const subtitle = document.querySelector('.hero .subtitle');
+            setTimeout(() => {
+                typeWriter(subtitle, 'Cloud Security | DevSecOps | Cybersecurity | MLOps | Site Reliability Engineering', 100);
+            }, 1000);
+        });
+
+        // Particle background effect
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 2px;
+                    height: 2px;
+                    background: rgba(255,255,255,0.1);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    animation: float ${Math.random() * 10 + 5}s linear infinite;
+                    left: ${Math.random() * 100}%;
+                    animation-delay: ${Math.random() * 5}s;
+                `;
+                hero.appendChild(particle);
+            }
+        }
+
+        // Add floating animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', createParticles);
+    </script>
+</body>
+</html>
+        </div>
+    </section>
+
+    <!-- About Section -->
+<section id="about" class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>About Me</h2>
+           
+        </div>
+        <div class="about-content" style="text-align: center; max-width: 900px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8;">
+                I am a Cloud Security and DevOps Engineering specialist with over 12 years of experience architecting secure, scalable infrastructure for mission-critical enterprise environments. My career focus is building resilient, security-first cloud systems that protect organizational assets while enabling rapid innovation.
+            </p>
+            
+            <div style="text-align: left; margin-top: 3rem;">
+                <h3 style="color: #3498db; margin-bottom: 1.5rem; font-size: 1.5rem; border-bottom: 2px solid #3498db; padding-bottom: 0.5rem;">
+                    🔒 Cloud Security & Cybersecurity Technology Expertise
+                </h3>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem; font-weight: 600; color: #3498db;">
+                    Security is the foundation of my practice. I specialize in integrating cybersecurity controls across the entire cloud infrastructure lifecycle:
+                </p>
+                
+                <h4 style="color: #3498db; margin-top: 2rem; margin-bottom: 1rem; font-size: 1.2rem;">
+                    Secure Infrastructure & Automation
+                </h4>
+                <ul style="list-style: none; padding-left: 0; font-size: 1.05rem; line-height: 1.8;">
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Architected zero-trust infrastructure using <strong>HashiCorp Vault</strong> for secrets management, credential rotation, and encryption
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Implemented IAM policies, RBAC, and service mesh security across <strong>AWS (EKS, ECS), OpenShift, and PCF</strong>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Embedded security scanning and vulnerability assessments into <strong>CI/CD pipelines</strong> (Jenkins, Artifactory)
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Developed security-hardened <strong>Infrastructure-as-Code</strong> (Terraform, Ansible, Chef, Helm) with CIS benchmarks and compliance automation
+                    </li>
+                </ul>
+                
+                <h4 style="color: #3498db; margin-top: 2rem; margin-bottom: 1rem; font-size: 1.2rem;">
+                    Threat Detection & Security Monitoring
+                </h4>
+                <ul style="list-style: none; padding-left: 0; font-size: 1.05rem; line-height: 1.8;">
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Deployed <strong>SIEM solutions using Splunk</strong> with real-time threat detection and custom correlation rules
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Configured advanced observability platforms (<strong>Dynatrace, Datadog</strong>) for anomaly detection and security metrics
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Created automated incident response workflows and security remediation scripts (<strong>Python, Bash</strong>)
+                    </li>
+                </ul>
+                
+                <h4 style="color: #3498db; margin-top: 2rem; margin-bottom: 1rem; font-size: 1.2rem;">
+                    Cloud Security Architecture
+                </h4>
+                <ul style="list-style: none; padding-left: 0; font-size: 1.05rem; line-height: 1.8;">
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Designed secure deployment strategies (<strong>blue-green, canary</strong>) with automated security validation gates
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Implemented <strong>container security</strong> policies, image scanning, runtime protection, and network segmentation
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Expertise in data encryption (at-rest/in-transit), <strong>cloud security posture management</strong>, and patch automation
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">▸</span>
+                        Experience with secure database management, migrations, and application hosting (Apache, Tomcat)
+                    </li>
+                </ul>
+            </div>
+            
+            <div style="text-align: left; margin-top: 3rem;">
+                <h3 style="color: #3498db; margin-bottom: 1.5rem; font-size: 1.5rem; border-bottom: 2px solid #3498db; padding-bottom: 0.5rem;">
+                    🎓 Professional Certifications
+                </h3>
+                <ul style="list-style: none; padding-left: 0; font-size: 1.05rem; line-height: 1.8;">
+                 <!--   <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #e74c3c;">✓</span>
+                        <strong>AWS Certified Security – Specialty</strong>
+                    </li> -->
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #e74c3c;">✓</span>
+                        <strong>AWS Certified DevOps Engineer – Professional</strong>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #e74c3c;">✓</span>
+                        <strong>AWS Certified Solutions Architect – Professional</strong>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #e74c3c;">✓</span>
+                        <strong>HashiCorp Certified: Terraform Associate</strong>
+                    </li>
+                </ul>
+                <p style="font-size: 1.05rem; margin-top: 1.5rem; opacity: 0.9; line-height: 1.8;">
+                    These certifications validate my expertise in cloud security architecture, threat mitigation, compliance frameworks, and secure automation—all critical components of modern <strong>cybersecurity technology infrastructure</strong>.
+                </p>
+            </div>
+            
+            <div style="text-align: left; margin-top: 3rem;">
+                <h3 style="color: #3498db; margin-bottom: 1.5rem; font-size: 1.5rem; border-bottom: 2px solid #3498db; padding-bottom: 0.5rem;">
+                    💼 Operational Security & Impact
+                </h3>
+                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                    I bring proven capabilities in <strong>24/7 security operations</strong> with on-call production support, incident detection, and rapid remediation. My experience with ITSM platforms (<strong>ServiceNow, Remedy, JIRA</strong>) ensures security audit trails, change management, and regulatory compliance.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; padding: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; font-weight: 500;">
+                    <strong>Measurable Outcomes:</strong> Reduced vulnerability exposure, accelerated secure deployments, enhanced threat detection capabilities, and maintained zero security incidents in production environments under my management.
+                </p>
+                <p style="font-size: 1.05rem; line-height: 1.8; opacity: 0.9;">
+                    I am committed to advancing cloud security practices and protecting digital infrastructure in an increasingly complex threat landscape. My approach combines deep technical security expertise with strategic thinking, ensuring solutions meet security requirements while enabling business agility and innovation.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Skills</h2>
+                <!-- <p>Technologies and tools I work with</p>-->
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i>  Infrastructure as Code (IaC) & Configuration Management</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Chef</span>
+                        <span class="skill-tag">Ansible</span>
+                        <span class="skill-tag">CloudFormation</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cubes"></i> Cloud Platforms</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">AWS (EC2, S3, Lambda, EKS, RDS, VPC, IAM, CloudWatch)</span>
+                        <span class="skill-tag">Azure (AKS, App Services, Azure DevOps)</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code-branch"></i> Container & Orchestration</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes (EKS, AKS, GKE, OpenShift) Actions</span>
+                        <span class="skill-tag">Docker Compose</span>
+                        <span class="skill-tag">Helm</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code-branch"></i> CI/CD & Build Tools</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">GitLab CI/CD</span>
+                        <span class="skill-tag">Azure DevOps Pipelines</span>
+                        <span class="skill-tag">ArgoCD</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Source Control Management (SCM)</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">GitLab</span>
+                        <span class="skill-tag">Bitbucket</span>
+                        <span class="skill-tag">Azure Repos</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code-branch"></i> Monitoring & Observability</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">ELK Stack (Elasticsearch, Logstash, Kibana)</span>
+                        <span class="skill-tag">Splunk</span>
+                        <span class="skill-tag">Datadog</span>
+                        <span class="skill-tag">Dynatrace</span>
+                        <span class="skill-tag">CloudWatch / Azure Monitor</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code-branch"></i> Logging & Log Management</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag"> Splunk</span>
+                        <span class="skill-tag">Loki</span>
+                        <span class="skill-tag">CloudWatch Logs</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Scripting & Programming</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Bash/Shell</span>
+                        <span class="skill-tag">PowerShell</span>
+                        <span class="skill-tag">YAML/JSON/HCL</span>
+                        <span class="skill-tag">Python</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Security & Compliance</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">HashiCorp Vault</span>
+                        <span class="skill-tag">AWS Secrets Manager/Azure Key Vault</span>
+                        <span class="skill-tag">SSL/TLS Certificate Management</span>
+                        <span class="skill-tag">IAM (Identity & Access Management)</span>
+                        <span class="skill-tag">Security Group Configuration</span>
+                        <span class="skill-tag">RBAC (Role-Based Access Control)</span>
+                        <span class="skill-tag">SIEM tools integration</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cubes"></i> AI/ML Operations (MLOps)</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">MLflow</span>
+                        <span class="skill-tag">Kubeflow</span>
+                        <span class="skill-tag">SageMaker (AWS)</span>
+                        <span class="skill-tag">Azure ML</span>
+                        <span class="skill-tag">Model deployment pipelines</span>
+                        <span class="skill-tag">GPU cluster management</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code-branch"></i> Networking & Load Balancing</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">VPC/VNet configuration</span>
+                        <span class="skill-tag">AWS ELB/ALB/NLB</span>
+                        <span class="skill-tag">NGINX/HAProxy</span>
+                        <span class="skill-tag">DNS (Route53, Azure DNS)</span>
+                        <span class="skill-tag">CDN (CloudFront, Akamai)</span>
+                        <span class="skill-tag">Service Mesh (Istio, Linkerd)</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-wrench"></i> Databases & Data Stores</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">PostgreSQL/MySQL</span>
+                        <span class="skill-tag">MongoDB/DynamoDB</span>
+                        <span class="skill-tag">Database backup & recovery</span>
+                        <span class="skill-tag">RDS/Azure SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Version Control & Artifact Management</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Nexus/Artifactory</span>
+                        <span class="skill-tag">Docker Registry/Harbor</span>
+                        <span class="skill-tag">NPM/PyPI private registries</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-shield-alt"></i> Incident Management & SRE Tools</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag"> PagerDuty</span>
+                        <span class="skill-tag"> ServiceNow</span>
+                        <span class="skill-tag"> xMatters</span>
+                        <span class="skill-tag"> BMC Remedy (now BMC Helix)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+####
+    <!-- Blog & Articles Section -->
+    <section id="research">
+        <div class="container">
+            <div class="section-title">
+                <h2>Research Articles</h2>
+                <!-- <p>Sharing knowledge through technical writing</p> -->
+            </div>
+            <div class="blog-grid">
+			
+                <!-- TechRxiv -->
+                <div class="blog-platform">
+                    <h3><i class="fab fa-TechRxiv"></i> TechRxiv Research Articles</h3>
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Adaptive Graph Neural Network Framework for Real-Time Threat Detection in Critical Infrastructure Networks</h4>
+                                <span class="article-date">Nov 2025</span>
+                            </div>
+                           <!-- <p class="article-excerpt">Lessons From the Trenches</p> -->
+                            <div class="article-stats">
+                                <span><i class="fas fa-eye"></i> 117 Views</span>
+                                <span><i class="fas fa-download"></i> 22 Downloads</span>
+                            </div>
+                            <a href="https://www.techrxiv.org/users/992962/articles/1360244-adaptive-graph-neural-network-framework-for-real-time-threat-detection-in-critical-infrastructure-networks" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Zero-Trust Architecture for Energy Grid Cybersecurity: Multi-Layered Authentication and Continuous Verification Framework</h4>
+                                <span class="article-date">Nov 2025</span>
+                            </div>
+                           <!-- <p class="article-excerpt">Multi-Layered Authentication and Continuous Verification Framework</p> -->
+                            <div class="article-stats">
+                                <span><i class="fas fa-eye"></i> 113 Views</span>
+                                <span><i class="fas fa-download"></i> 18 Download</span>
+                            </div>
+                            <a href="https://dzone.com/articles/terraform-state-locking-migration-dynamodb" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                    </div>
+                </div>
+
+    <!-- Blog & Articles Section -->
+    <section id="publish">
+        <div class="container">
+            <div class="section-title">
+                <h2>Published Articles</h2>
+                <!-- <p>Sharing knowledge through technical writing</p> -->
+            </div>
+            <div class="blog-grid">
+			
+                <!-- DZone Articles -->
+                <div class="blog-platform">
+                    <h3><i class="fab fa-DZone"></i> DZone Articles</h3>
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Building GitOps Pipelines With Helm on OpenShift</h4>
+                                <span class="article-date">Sep 2025</span>
+                            </div>
+                            <p class="article-excerpt">Lessons From the Trenches</p>
+                            <div class="article-stats">
+                                <span><i class="fas fa-heart"></i> 106 Reputation</span>
+                                <span><i class="fas fa-eye"></i> 2.3K+ Pageviews</span>
+                            </div>
+                            <a href="https://dzone.com/users/5399704/kazeemmayeed.html" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>The Terraform State Locking Migration You Need to Know About</h4>
+                                <span class="article-date">Nov 2025</span>
+                            </div>
+                            <p class="article-excerpt">Moving Beyond DynamoDB</p>
+                            <div class="article-stats">
+                                <span><i class="fas fa-heart"></i> 106 Reputation</span>
+                                <span><i class="fas fa-eye"></i> 1K+ Pageviews</span>
+                            </div>
+                            <a href="https://dzone.com/articles/terraform-state-locking-migration-dynamodb" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                    </div>
+                </div>
+			
+                <!-- Medium Articles -->
+                <div class="blog-platform">
+                    <h3><i class="fab fa-medium"></i> Medium Articles </h3>
+					             <div class="article-stats">
+                                <span><i class="fas fa-heart"></i> 5k+ Reads</span>
+                                <span><i class="fas fa-eye"></i> 4k+ Views</span>
+                                <span><i class="fas fa-eye"></i> 4k+ Presentations</span>
+                            </div>
+					
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>AI-Driven DevOps</h4>
+                             <!--   <span class="article-date">Aug 2025</span>  -->
+                            </div>
+                            <p class="article-excerpt">How AIOps is Transforming Observability, Incident Response, and Automation</p>
+                            
+                            <a href="https://devsecopsai.today/ai-driven-devops-how-aiops-is-transforming-observability-incident-response-and-automation-efc79e5c63c6" class="article-link" target="_blank">Read More</a>
+                        </article>
+						
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Cybersecurity in the Age of IoT</h4>
+                               
+                            </div>
+                            <p class="article-excerpt">Challenges and Innovations</p>
+                            
+                            <a href="https://medium.com/@kazeemmayeed/cybersecurity-in-the-age-of-iot-challenges-and-innovations-57afa06f910c" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>AI-Powered Cybersecurity</h4>
+                              
+                            </div>
+                            <p class="article-excerpt">Defending Against Next-Generation Threats</p>
+
+                            <a href="https://medium.com/@kazeemmayeed/ai-powered-cybersecurity-defending-against-next-generation-threats-6ea4771f0a19" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Zero Trust Architecture</h4>
+                               
+                            </div>
+                            <p class="article-excerpt">The Future of Cybersecurity in a Hyperconnected World</p>
+                 <!--           <div class="article-stats">
+                                <span><i class="fas fa-heart"></i> 292 Reads</span>
+                                <span><i class="fas fa-eye"></i> 349 Views</span>
+                                <span><i class="fas fa-eye"></i> 198 Presentations</span>
+                            </div>  -->
+                            <a href="https://medium.com/@kazeemmayeed/zero-trust-architecture-the-future-of-cybersecurity-in-a-hyperconnected-world-eef3ae01b6f8" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>The Intersection of AI, ML, and Security</h4>
+                          
+                            </div>
+                            <p class="article-excerpt">Transforming Cybersecurity in the Digital Age</p>
+
+                            <a href="https://medium.com/@kazeemmayeed/the-intersection-of-ai-ml-and-security-transforming-cybersecurity-in-the-digital-age-4e7004b9db69" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Observability</h4>
+                              
+                            </div>
+                            <p class="article-excerpt">Beyond Monitoring in Modern Systems</p>
+                            
+                            <a href="https://devsecopsai.today/observability-beyond-monitoring-in-modern-systems-016df170a883" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>How to Build Scalable Multi-Cluster Kubernetes Infrastructure for Enterprises</h4>
+                              
+                            </div>
+                            <p class="article-excerpt">To build scalable, secure, and manageable multi-cluster Kubernetes infrastructure with real-world examples...</p>
+                            
+                            <a href="https://devsecopsai.today/how-to-build-scalable-multi-cluster-kubernetes-infrastructure-for-enterprises-84a109076699" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>PowerShell Programming and Scripting</h4>
+                              
+                            </div>
+                            <p class="article-excerpt">A Complete Guide</p>
+                            
+                            <a href="https://devsecopsai.today/powershell-programming-and-scripting-a-complete-guide-9fcd8bc929c2" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Designing GitOps Pipelines with Helm on OpenShift</h4>
+                              
+                            </div>
+                            <p class="article-excerpt">GitOps pipeline using Helm on OpenShift...</p>
+                            
+                            <a href="https://devsecopsai.today/designing-gitops-pipelines-with-helm-on-openshift-d88ab9a14c0c" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                         <article class="article-card">
+                            <div class="article-header">
+                                <h4>End-to-End Automation with Chef</h4>
+                               
+                            </div>
+                            <p class="article-excerpt">A Complete Guide for DevOps Engineers</p>
+                            
+                            <a href="https://devsecopsai.today/end-to-end-automation-with-chef-a-complete-guide-for-devops-engineers-5519ca44ac04" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>End-to-End Automation with Terraform</h4>
+                              
+                            </div>
+                            <p class="article-excerpt">A DevOps Engineer’s Guide to Infrastructure as Code</p>
+                            
+                            <a href="https://devsecopsai.today/end-to-end-automation-with-terraform-a-devops-engineers-guide-to-infrastructure-as-code-48783891fcb1" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Enterprise-Grade Jenkins Shared Libraries</h4>
+                         
+                            </div>
+                            <p class="article-excerpt">How to Build, Version, and Scale CI/CD as Code</p>
+                            
+                            <a href="https://devsecopsai.today/enterprise-grade-jenkins-shared-libraries-how-to-build-version-and-scale-ci-cd-as-code-ee4b074062b3" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Zero-Downtime Deployments on Kubernetes (Step-by-Step)</h4>
+                               
+                            </div>
+                            <p class="article-excerpt">Update applications running on Kubernetes without causing any service interruption</p>
+                            
+                            <a href="https://devsecopsai.today/zero-downtime-deployments-on-kubernetes-step-by-step-a657e2b055d1" class="article-link" target="_blank">Read More</a>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Dev.to Articles -->
+                <div class="blog-platform">
+                    <h3><i class="fab fa-dev"></i> Dev.to Stories</h3>
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Zero-Downtime Deployments on Kubernetes (Step-by-Step)</h4>
+                               
+                            </div>
+                            <p class="article-excerpt">How to update applications running on Kubernetes without causing any service interruption...</p>
+                            <div class="article-stats">
+                            </div>
+                            <a href="https://dev.to/kazeem_mohammed/zero-downtime-deployments-on-kubernetes-step-by-step-10c" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>End-to-End Automation with Terraform</h4>
+                               
+                            </div>
+                            <p class="article-excerpt">A DevOps Engineer’s Guide to Infrastructure as Code..</p>
+                            <div class="article-stats">
+                            </div>
+                            <a href="https://dev.to/kazeem_mohammed/end-to-end-automation-with-terraform-a-devops-engineers-guide-to-infrastructure-as-code-2n32" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Observability</h4>
+                               
+                            </div>
+                            <p class="article-excerpt">Beyond Monitoring in Modern Systems...</p>
+                            <div class="article-stats">
+                            </div>
+                            <a href="https://dev.to/kazeem_mohammed/observability-beyond-monitoring-in-modern-systems-46n" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>AI-Driven DevOps</h4>
+                            
+                            </div>
+                            <p class="article-excerpt">How AIOps is Transforming Observability, Incident Response, and Automation...</p>
+                            <div class="article-stats">
+                            </div>
+                            <a href="https://dev.to/kazeem_mohammed/ai-driven-devops-how-aiops-is-transforming-observability-incident-response-and-automation-2c4i" class="article-link" target="_blank">Read More</a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-cta">
+                <a href="https://dzone.com/users/5399704/kazeemmayeed.html" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-dzone"></i> View Dzone Articles
+                </a>
+                <a href="https://medium.com/@kazeemmayeed" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-medium"></i> View All Medium Articles
+                </a>
+                <a href="https://dev.to/kazeem_mohammed" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-dev"></i> View All Dev.to Stories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source & Packages Section -->
+    <section id="opensource">
+        <div class="container">
+            <div class="section-title">
+                <h2>Open Source Contributions</h2>
+<!--                <p>Contributing to the DevOps community</p> -->
+            </div>
+            
+            <!-- Terraform Registry Packages -->
+            <div class="opensource-category">
+                <h3><i class="fab fa-terraform"></i> Terraform Registry Packages</h3>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>automation-terraform</h4>
+                            <div class="package-badges">
+                                <span class="badge badge-terraform">Terraform</span>
+                                <span class="badge badge-aws">AWS</span>
+                            </div>
+                        </div>
+                        <p class="package-description">
+                            Deployment of a robust AWS infrastructure with support for multiple environments.
+                        </p>
+                        <div class="package-stats">
+                            <div class="stat">
+                                <i class="fas fa-download"></i>
+                                <span>15K+ downloads</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-code-branch"></i>
+                                <span>v2.0.0</span>
+                            </div>
+                        </div>
+                        <div class="package-links">
+                            <a href="https://registry.terraform.io/modules/kazeemayeed/automation-terraform/iac/latest" class="package-link" target="_blank">
+                                <i class="fab fa-terraform"></i> Registry
+                            </a>
+                            <a href="https://github.com/kazeemayeed/terraform-iac-automation-terraform" class="package-link" target="_blank">
+                                <i class="fab fa-github"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>module-full-suite</h4>
+                            <div class="package-badges">
+                                <span class="badge badge-terraform">Terraform</span>
+                                <span class="badge badge-k8s">Kubernetes</span>
+                            </div>
+                        </div>
+                        <p class="package-description">
+                            This Terraform Package deploys a full suite of infrastructure resources. It is designed to be reusable and composable within your Terraform projects.
+                        </p>
+                        <div class="package-stats">
+                            <div class="stat">
+                                <i class="fas fa-download"></i>
+                                <span>18.5K+ downloads</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-code-branch"></i>
+                                <span>v3.0.0</span>
+                            </div>
+                        </div>
+                        <div class="package-links">
+                            <a href="https://registry.terraform.io/modules/kazeemayeed/module-full-suite/iac/latest" class="package-link" target="_blank">
+                                <i class="fab fa-terraform"></i> Registry
+                            </a>
+                            <a href="https://github.com/kazeemayeed/terraform-iac-module-full-suite" class="package-link" target="_blank">
+                                <i class="fab fa-github"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artifact Hub -->
+            <div class="opensource-category">
+                <h3><i class="fas fa-cubes"></i> Helm Charts & Artifacts</h3>
+                <div class="artifacts-grid">
+                    <div class="artifact-card">
+                        <div class="artifact-header">
+                            <h4>DevOps Toolchain Helm Chart</h4>
+                            <span class="artifact-type">Helm Chart</span>
+                        </div>
+                        <p class="artifact-description">
+                            Complete DevOps toolchain deployment including Jenkins, SonarQube, Nexus, 
+                            and monitoring stack for Kubernetes environments.
+                        </p>
+                        <div class="artifact-stats">
+             <!--               <span class="stat"><i class="fas fa-download"></i> 892 installs</span>
+                            <span class="stat"><i class="fas fa-tag"></i> v3.1.2</span> -->
+                        </div>
+                        <a href="https://artifacthub.io/packages/helm/vault-airgap-chart/vault-airgap" class="artifact-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View on Artifact Hub
+                        </a>
+                    </div>
+                </div>
+
+
+            <!-- Docker Hub -->
+            <div class="opensource-category">
+                <h3><i class="fas fa-cubes"></i> Docker Hub package</h3>
+                <div class="artifacts-grid">
+                    <div class="artifact-card">
+                        <div class="artifact-header">
+                            <h4>Cloud-Security-Toolkit</h4>
+                            <span class="artifact-type">Docker Image</span>
+                        </div>
+                        <p class="artifact-description">
+                            Cloud Infrastructure Security "Hardening as Code" Toolkit. A comprehensive security analysis tool for cloud infrastructure configurations that supports AWS, Azure, and GCP across multiple Infrastructure as Code (IaC) formats.
+                        </p>
+                        <div class="artifact-stats">
+                            <span class="stat"><i class="fas fa-download"></i> 50k+ installs</span>
+                            <span class="stat"><i class="fas fa-tag"></i> v1.0.3</span>
+                        </div>
+                        <a href="https://hub.docker.com/r/kazimmayeed/cloud-security-toolkit" class="artifact-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View on Docker Hub
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <!-- GitHub Repo's -->
+                <div class="blog-platform">
+                    <h3><i class="fab fa-dev"></i> GitHub Repo's</h3>
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>terraform-iac-automation-terraform (Step-by-Step)</h4>
+                            </div>
+                            <p class="article-excerpt"> automates the deployment of a robust AWS infrastructure with support for multiple environments (dev and prod)...</p>
+                            <div class="article-stats">
+                                <span><i class="fas fa-clone"></i> >10k clones</span>
+                            </div>
+                            <a href="https://github.com/kazeemayeed/terraform-iac-automation-terraform" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>terraform-iac-module-full-suite</h4>
+                            </div>
+                            <p class="article-excerpt">This Terraform module deploys a full suite of infrastructure resources. It is designed to be reusable and composable within your Terraform projects.</p>
+                            <div class="article-stats">
+                                <span><i class="fas fa-clone"></i> >10k clones</span>
+                            </div>
+                            <a href="https://github.com/kazeemayeed/terraform-iac-module-full-suite" class="article-link" target="_blank">Read More</a>
+                        </article>
+						
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>cloud-security-toolkit</h4>
+                            </div>
+                            <p class="article-excerpt"> A comprehensive security analysis tool for cloud infrastructure configurations that supports AWS, Azure, and GCP across multiple Infrastructure as Code (IaC) formats. (dev and prod)...</p>
+                            <div class="article-stats">
+                                <span><i class="fas fa-clone"></i> >2k+ clones</span>
+                            </div>
+                            <a href="https://github.com/kazeemayeed/cloud-security-toolkit" class="article-link" target="_blank">Read More</a>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>Uptime-Kuma_Helm</h4>
+                            </div>
+                            <p class="article-excerpt"> enterprise-grade, Kubernetes-ready Helm chart for deploying Uptime-Kuma, a self-hosted monitoring and status page system.</p>
+                            <div class="article-stats">
+                                <span><i class="fas fa-clone"></i> >3k clones</span>
+                            </div>
+                            <a href="https://github.com/kazeemayeed/Uptime-Kuma_Helm" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>ssl-cert-monitor</h4>
+                            </div>
+                            <p class="article-excerpt">This script monitors SSL certificate expiry for a list of domains, notifies via Slack (or email)...</p>
+                            <div class="article-stats">
+                                <span><i class="fas fa-clone"></i> >2k clones</span>
+                            </div>
+                            <a href="https://github.com/kazeemayeed/ssl-cert-monitor" class="article-link" target="_blank">Read More</a>
+                        </article>
+                        
+                        <article class="article-card">
+                            <div class="article-header">
+                                <h4>vault-airgap-chart</h4>
+                            </div>
+                            <p class="article-excerpt">This Helm chart deploys HashiCorp Vault in an air-gapped, production-ready configuration, suitable for secure and...</p>
+                            <div class="article-stats">
+                                <span><i class="fas fa-clone"></i> >3k clones</span>
+                            </div>
+                            <a href="https://github.com/kazeemayeed/vault-airgap-chart" class="article-link" target="_blank">Read More</a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+    <!-- Open Source & Packages Section -->
+    <section id="author">
+        <div class="container">
+            <div class="section-title">
+                <h2>Book(s) Authored & Published</h2>
+                <p>Contribution, Community Involvement & Knowledge Dissemination</p>
+            </div>
+
+            <!-- Book AWS -->
+            <div class="opensource-category">
+                <h3><i class="fas fa-cubes"></i> Book Authored & Published</h3>
+                <div class="artifacts-grid">
+                    <div class="artifact-card">
+                        <div class="artifact-header">
+                            <h4>DevOps Playbook for High Availability Systems</h4>
+                            <span class="artifact-type">Ebook & Paperback</span>
+                        </div>
+                        <p class="artifact-description">
+                            A Comprehensive Guide to Building Resilient, Scalable, and Fault-Tolerant Infrastructure.
+                        </p>
+                        <div class="artifact-stats">
+                            <span class="stat"><i class="fas fa-book"></i> ISBN-13: ‎979-8264622434</span>
+                            <span class="stat"><i class="fas fa-book"></i> ASIN: B0FQQZ1MNB</span>
+                            <span class="stat"><i class="fas fa-stat"></i>Publication date: September 9, 2025</span>
+                            <span class="stat"><i class="fas fa-stat language"></i> Language: English</span>
+                        </div>
+                        <a href="https://www.amazon.com/dp/B0FQQZ1MNB" class="artifact-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View on Amazon
+                        </a>
+                    </div>
+                </div>
+				</div>
+				
+				    <div class="artifact-card">
+                        <div class="artifact-header">
+                            <h4>Artificial Intelligence for Cybersecurity</h4>
+                            <span class="artifact-type">Ebook, Paperback & Hardcover</span>
+                        </div>
+                        <p class="artifact-description">
+                            Concepts, Applications, and Defense.
+                        </p>
+                        <div class="artifact-stats">
+                            <span class="stat"><i class="fas fa-book"></i> ISBN-13: ‎979-8270598211</span>
+                            <span class="stat"><i class="fas fa-book"></i> ASIN: ‎ B0FWZKBH82</span>
+                            <span class="stat"><i class="fas fa-stat"></i>Publication date: October 19, 2025</span>
+                            <span class="stat"><i class="fas fa-stat language"></i> Language: English</span>
+                        </div>
+                        <a href="https://www.amazon.com/dp/B0FWZKBH82" class="artifact-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View on Amazon
+                        </a>
+                    </div>
+                </div>			
+            </div>
+        </div>
+    </section>
+    <!-- Mentorship Section -->
+    <section id="mentor">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mentor at PushFar</h2>
+                <p>Empowering the Next Generation of Tech Professionals</p>
+            </div>
+
+            <!-- Book AWS -->
+            <div class="opensource-category">
+                <h3><i class="fas fa-cubes"></i> Registered mentor on PushFar</h3>
+                <div class="artifacts-grid">
+                    <div class="artifact-card">
+                        <div class="artifact-header">
+                            <h4>Guiding Professionals in Career Growth & Development</h4>
+                            <span class="artifact-type">Mentorship and community contribution</span>
+                        </div>
+                        <p class="artifact-description">
+                            Sharing expertise in Cloud, DevOps, and Automation while fostering continuous learning and supporting mentees in their career pathways.
+                        </p>
+                        <div class="artifact-stats">
+                            <span class="stat"><i class="fas fa-mentee"></i> Mentee: 20+</span>
+                            <span class="stat"><i class="fas fa-region"></i> Region: Global</span>
+                            <span class="stat"><i class="fas fa-expert"></i>Expertise: Technology</span>
+                            <span class="stat"><i class="fas fa-stat language"></i> Language: English</span>
+                        </div>
+                        <a href="https://www.pushfar.com/profile/" class="artifact-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View on PushFar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Content Section -->
+    <section id="webinar">
+        <div class="container">
+            <div class="section-title">
+                <h2>Community Webinar Initiative on AI-Driven Cybersecurity</h2>
+                <p>Independently conceptualized and hosted a public webinar on below topic. Promoted through LinkedIn and Medium, the event engaged professionals and learners from diverse backgrounds, fostering community learning and awareness of emerging cyber threats.</p>
+            </div>
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/lj-TyiL8IHo" 
+                                title="Webinar on AI DrivenZeroTrust-Autonomous Security for the Cloud Era" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h4>Webinar on AI DrivenZeroTrust-Autonomous Security for the Cloud Era</h4>
+                        <p class="video-description">
+                            Zero Trust = “Never trust, always verify”/ AI as the enabler of autonomous security/ Dynamic, context-aware access control/ Cloud-native focus/ Self-healing and autonomous defense/ Improved resilience and reduced complexity/ Future-proof security posture
+                        </p>
+                       <!-- <div class="video-stats">
+                            <span><i class="fas fa-eye"></i> 15.2K views</span>
+                            <span><i class="fas fa-thumbs-up"></i> 892 likes</span>
+                            <span><i class="fas fa-clock"></i> 45 min</span>
+                        </div> -->
+                        <div class="video-tags">
+                            <span class="video-tag">Security</span>
+                            <span class="video-tag">Kubernetes</span>
+                            <span class="video-tag">Cloud</span>
+                            <span class="video-tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/2LJtAL-0QRQ" 
+                                title="Webinar: Cloud Native Automation and DevSecOps — Building Secure, Scalable Systems in the Modern Era" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h4>Webinar: Cloud Native Automation and DevSecOps — Building Secure, Scalable Systems in the Modern Era</h4>
+                        <p class="video-description">
+                            Implementing cloud-native automation for efficient deployment
+							Integrating security practices into CI/CD pipelines (DevSecOps)
+							Designing scalable, resilient systems
+							Learning from real-world case studies
+							Tools and frameworks to accelerate adoption
+                        </p>
+                    <!--    <div class="video-stats">
+                            <span><i class="fas fa-eye"></i> 12.8K views</span>
+                            <span><i class="fas fa-thumbs-up"></i> 756 likes</span>
+                            <span><i class="fas fa-clock"></i> 38 min</span>
+                        </div> -->
+                        <div class="video-tags">
+                            <span class="video-tag">Security</span>
+                            <span class="video-tag">DevSecOps</span>
+                            <span class="video-tag">IaC</span>
+                            <span class="video-tag">Cloud</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Content Section -->
+    <section id="videos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Video Content</h2>
+                <p>DevOps tutorials and technical deep-dives</p>
+            </div>
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/-qS0C8Jr3d0" 
+                                title="Observability: Mastering System Intelligence in the Era of Distributed Computing" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h4>Observability: Mastering System Intelligence in the Era of Distributed Computing</h4>
+                        <p class="video-description">
+                            It’s not just a buzzword. Observability has become the cornerstone of how organizations maintain reliability, ensure performance, and build trust in digital experiences that millions of users depend on daily. But what exactly is observability, how do we implement it effectively, and what is its broader impact?
+                        </p>
+                       <!-- <div class="video-stats">
+                            <span><i class="fas fa-eye"></i> 15.2K views</span>
+                            <span><i class="fas fa-thumbs-up"></i> 892 likes</span>
+                            <span><i class="fas fa-clock"></i> 45 min</span>
+                        </div> -->
+                        <div class="video-tags">
+                            <span class="video-tag">Jenkins</span>
+                            <span class="video-tag">Kubernetes</span>
+                            <span class="video-tag">CI/CD</span>
+                            <span class="video-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/v3i5SwZowLg" 
+                                title="Terraform for Enterprise Cloud Infrastructure | Multi-Cloud DevOps with AWS, Azure, GCP" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h4>Terraform for Enterprise Cloud Infrastructure | Multi-Cloud DevOps with AWS, Azure, GCP</h4>
+                        <p class="video-description">
+                            Learn how to provision and manage AWS infrastructure using Terraform. 
+                            Covers VPC setup, auto-scaling groups, load balancers, and best practices.
+                        </p>
+                    <!--    <div class="video-stats">
+                            <span><i class="fas fa-eye"></i> 12.8K views</span>
+                            <span><i class="fas fa-thumbs-up"></i> 756 likes</span>
+                            <span><i class="fas fa-clock"></i> 38 min</span>
+                        </div> -->
+                        <div class="video-tags">
+                            <span class="video-tag">Terraform</span>
+                            <span class="video-tag">AWS</span>
+                            <span class="video-tag">IaC</span>
+                            <span class="video-tag">Cloud</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-cta">
+                <a href="https://www.youtube.com/channel/UCQ11YJvyf7OSmuZMQ5iDbVA" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-youtube"></i> Visit My YouTube Channel
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications</h2>
+                <p>Professional certifications and achievements</p>
+            </div>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <div class="cert-logo">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="cert-content">
+                        <h4>AWS Certified DevOps Engineer - Professional</h4>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                        <p class="cert-date">Issued: August 2025</p>
+                        <p class="cert-id">Credential ID: 0811d461dfa649ebbda448741e387545</p>
+                        <div class="cert-skills">
+                            <span class="cert-skill">AWS</span>
+                            <span class="cert-skill">CI/CD</span>
+                            <span class="cert-skill">Infrastructure & Automation</span>
+                            <span class="cert-skill">Monitoring, Logging & Observability</span>
+                            <span class="cert-skill">Security & Compliance</span>
+                            <span class="cert-skill">High Availability & Scaling</span>
+                        </div>
+                    </div>
+                    <div class="cert-verify">
+                        <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/0811d461dfa649ebbda448741e387545" target="_blank" class="verify-btn">
+                            <i class="fas fa-certificate"></i> Verify
+                        </a>
+                    </div>
+                </div>
+
+      <!--          <div class="cert-card">
+                    <div class="cert-logo">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="cert-content">
+                        <h4>AWS Certified Security - Specialty</h4>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                        <p class="cert-date">Issued: August 2025</p>
+                        <p class="cert-id">Credential ID: f91618b3e43445beb6544842e682fef4</p>
+                        <div class="cert-skills">
+                            <span class="cert-skill">Identity & Access Management</span>
+                            <span class="cert-skill">Data Protection & Encryption</span>
+                            <span class="cert-skill">Monitoring & Threat Detection</span>
+                            <span class="cert-skill">Network & Application Security</span>
+                            <span class="cert-skill">Compliance & Risk Management</span>
+                        </div>
+                    </div>
+                    <div class="cert-verify">
+                        <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/f91618b3e43445beb6544842e682fef4" target="_blank" class="verify-btn">
+                            <i class="fas fa-certificate"></i> Verify
+                        </a>
+                    </div>
+                </div>-->
+
+                <div class="cert-card">
+                    <div class="cert-logo">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="cert-content">
+                        <h4>AWS Certified Solutions Architect - Professional</h4>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                        <p class="cert-date">Issued: August 2025</p>
+                        <p class="cert-id">Credential ID: 6cbaa1d66711470aab3b53844c404b16</p>
+                        <div class="cert-skills">
+                            <span class="cert-skill">Advanced AWS Architecture</span>
+                            <span class="cert-skill">Security & Compliance</span>
+                            <span class="cert-skill">Networking</span>
+                            <span class="cert-skill">Cost Optimization</span>
+                            <span class="cert-skill">Deployment & Automation</span>
+                            <span class="cert-skill">Monitoring & Observability</span>
+                            <span class="cert-skill">High Availability & Disaster Recovery</span>
+                        </div>
+                    </div>
+                    <div class="cert-verify">
+                        <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/6cbaa1d66711470aab3b53844c404b16" target="_blank" class="verify-btn">
+                            <i class="fas fa-certificate"></i> Verify
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-logo">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="cert-content">
+                        <h4>HashiCorp Certified: Terraform Associate</h4>
+                        <p class="cert-issuer">HashiCorp</p>
+                        <p class="cert-date">Issued: August 2025</p>
+                        <p class="cert-id">Credential ID: Terraform Associate (003)</p>
+                        <div class="cert-skills">
+                            <span class="cert-skill">Terraform</span>
+                            <span class="cert-skill">Infrastructure as Code</span>
+                            <span class="cert-skill">Cloud Provisioning</span>
+                        </div>
+                    </div>
+                    <div class="cert-verify">
+                        <a href="https://www.credly.com/badges/f77bd1fe-819e-4b42-a558-cccfd051b788/public_url" target="_blank" class="verify-btn">
+                            <i class="fas fa-certificate"></i> Verify
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+<!--    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Case Studies</h2>
+                <p>Real-world DevOps implementations and solutions</p>
+            </div>
+            <div class="case-studies-grid">
+                <div class="case-study-card" onclick="openModal('modal1')">
+                    <div class="case-study-header">
+                        <h3>CI/CD Pipeline Automation</h3>
+                        <p>End-to-end automated deployment pipeline</p>
+                    </div>
+                    <div class="case-study-body">
+                        <p>Implemented a comprehensive CI/CD pipeline for an e-commerce application, reducing deployment time from 4 hours to 25 minutes.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                        <div class="metrics">
+                            <div class="metric-item">
+                                <span>Deployment Time</span>
+                                <span class="metric-value">93.8% Reduction</span>
+                            </div>
+                            <div class="metric-item">
+                                <span>Success Rate</span>
+                                <span class="metric-value">100%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span>Code Coverage</span>
+                                <span class="metric-value">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" onclick="openModal('modal2')">
+                    <div class="case-study-header">
+                        <h3>Infrastructure as Code</h3>
+                        <p>Scalable AWS infrastructure with Terraform</p>
+                    </div>
+                    <div class="case-study-body">
+                        <p>Designed and implemented auto-scaling infrastructure for a web application serving 100K+ daily users using Terraform.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">CloudWatch</span>
+                            <span class="tech-tag">VPC</span>
+                        </div>
+                        <div class="metrics">
+                            <div class="metric-item">
+                                <span>Provisioning Time</span>
+                                <span class="metric-value">15 minutes</span>
+                            </div>
+                            <div class="metric-item">
+                                <span>Uptime</span>
+                                <span class="metric-value">99.9%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span>Cost Reduction</span>
+                                <span class="metric-value">40%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" onclick="openModal('modal3')">
+                    <div class="case-study-header">
+                        <h3>Microservices Migration</h3>
+                        <p>Containerized microservices with Kubernetes</p>
+                    </div>
+                    <div class="case-study-body">
+                        <p>Migrated monolithic application to microservices architecture using Docker containers and Kubernetes orchestration.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Istio</span>
+                            <span class="tech-tag">Helm</span>
+                        </div>
+                        <div class="metrics">
+                            <div class="metric-item">
+                                <span>Resource Utilization</span>
+                                <span class="metric-value">60% Improvement</span>
+                            </div>
+                            <div class="metric-item">
+                                <span>Deployment Time</span>
+                                <span class="metric-value">5 seconds</span>
+                            </div>
+                            <div class="metric-item">
+                                <span>Availability</span>
+                                <span class="metric-value">99.99%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" onclick="openModal('modal4')">
+                    <div class="case-study-header">
+                        <h3>Observability Stack</h3>
+                        <p>Comprehensive monitoring and logging solution</p>
+                    </div>
+                    <div class="case-study-body">
+                        <p>Implemented end-to-end monitoring, logging, and alerting system for proactive incident management.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Prometheus</span>
+                            <span class="tech-tag">Grafana</span>
+                            <span class="tech-tag">ELK Stack</span>
+                            <span class="tech-tag">Jaeger</span>
+                        </div>
+                        <div class="metrics">
+                            <div class="metric-item">
+                                <span>MTTD</span>
+                                <span class="metric-value">30 seconds</span>
+                            </div>
+                            <div class="metric-item">
+                                <span>MTTR</span>
+                                <span class="metric-value">5 minutes</span>
+                            </div>
+                            <div class="metric-item">
+                                <span>False Positives</span>
+                                <span class="metric-value">95% Reduction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Let's discuss your DevOps needs</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                <div class="contact-item">
+                       <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>KazeemMayeed@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>USA</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/KazeemMohammed</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
